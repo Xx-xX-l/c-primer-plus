@@ -210,13 +210,21 @@ void num(double a, double b)
 int main(void)
 
 {
-    int a, b,i;
+    int a, b,sum;
     printf("Enter lower and upper integer limits:");
-    scanf_s("%d %d", &a, &b);
-    while(a<b)
+    
+    while(scanf_s("%d %d", &a, &b)==2 && a<b)  // 注意 &&写法
     {
-        i = (b * (b + 1) * (2*b + 1) - (a-1 )* a * (2*a -1)) / 6;
-        printf("The sum of squares from %d to %d is %d", a * a, b * b,i);
+        sum = (b * (b + 1) * (2*b + 1) - (a-1)* a * (2*a -1)) / 6; 
+        /*另外一种方法
+         int sum = 0;
+         int i;
+         for (i = a; i <= b; i++)
+         {
+               sum += i * i;
+         }
+         */
+        printf("The sum of squares from %d to %d is %d", a * a, b * b,sum);
         printf("\nEnter next set of limits:");
         scanf_s("%d %d", &a, &b);
     }
