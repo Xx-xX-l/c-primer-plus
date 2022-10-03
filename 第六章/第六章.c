@@ -204,7 +204,8 @@ void num(double a, double b)
     printf("计算结果为 %g ", c);
 }
 */
-//第十题
+
+/*第十题
 #include <stdio.h>
 
 int main(void)
@@ -215,19 +216,246 @@ int main(void)
     
     while(scanf_s("%d %d", &a, &b)==2 && a<b)  // 注意 &&写法
     {
-        sum = (b * (b + 1) * (2*b + 1) - (a-1)* a * (2*a -1)) / 6; 
-        /*另外一种方法
-         int sum = 0;
-         int i;
-         for (i = a; i <= b; i++)
-         {
-               sum += i * i;
-         }
-         */
+        sum = (b * (b + 1) * (2*b + 1) - (a-1)* a * (2*a -1)) / 6; //数学方法
+        //程序方法（更好）
+       //int sum = 0;
+       //int i;
+       //for (i = a; i <= b; i++)
+       //{
+       //      sum += i * i;
+       //}
+         
         printf("The sum of squares from %d to %d is %d", a * a, b * b,sum);
         printf("\nEnter next set of limits:");
         scanf_s("%d %d", &a, &b);
     }
     printf("Done!");
+    return 0;
+}
+*/
+
+/*第十一题
+#include <stdio.h>
+int main(void)
+
+{
+    int num[9];
+    int i;
+    printf("请输入8个整数:");
+    //scanf_s("%d", &num);  //这样只读取了一个数字进入数组num
+    //for (i = 7; i >= 0; i--)
+    //{
+    //    printf("倒序打印%d", num[i]);
+    //}
+    for (i = 0; i <=7;i++)
+    {
+        scanf_s("%d", &num[i]);
+    }
+    for (i = 7; i >= 0; i--)
+    {
+        printf("%d", num[i]);
+    }
+    printf("\nDone!");
+    return 0;
+}
+*/
+
+/*第十二题
+#include <stdio.h>
+
+int main(void)
+
+{
+    int n,i;
+    printf("请输入次数:");
+    while ((scanf_s("%d", &n) == 1) && (n > 0))
+    {
+        double j = 0.0;
+        double k = 0.0;
+        for (i = 1; i <= n; i++)
+        {
+            
+            j += 1.0 / i;
+            if (i % 2 == 1)
+            {
+                k += 1.0 / i;
+            }
+            else
+            {
+                k -= 1.0/ i;
+            }
+        }
+        printf("1.0+1.0/2.0+1.0/3.0+...... = %g\n", j);
+        printf("1.0-1.0/2.0+1.0/3.0-1.0/4.0......=%g\n", k);
+        printf("sum=%g", j + k);
+    }
+    return 0;
+}
+*/
+
+/*第十三题
+#include <stdio.h>
+#include <math.h>
+
+int main(void)
+
+{
+    int i;
+    int k = 0;
+    int mi[8];
+    for (i = 0; i <= 7; i++)
+    {
+        //另外一种方法
+      //int a = 2; 
+      //mi[i] = a;
+      //a *= 2;
+        mi[i] = pow(2.0,i+1);
+    }
+    do
+    {  
+        printf("%d\n", mi[k]);
+        k++;
+    } while (k < 8);
+    return 0;
+}
+*/
+
+/*第十四题
+#include <stdio.h>
+
+int main(void)
+
+{
+    int i;
+    double a[8];
+    double b[8];
+    for (i = 0; i <= 7; i++)
+    {
+        printf("请输入第%d个值:", i+1);
+        scanf_s("%lf", &a[i]);
+    }
+    b[0]=a[0];
+    for (i = 1; i <= 8; i++)
+    {
+        b[i] = a[i] + b[i - 1];
+    }
+    printf("a array\n");
+    for (i = 0; i <= 7; i++)
+    {
+        printf("%-8.1f", a[i]);
+    }
+    printf("\nb array\n");
+    for (i = 0; i <= 7; i++)
+    {
+        printf("%-8.1f", b[i]);
+    }
+    return 0;
+}
+*/
+/*第十五题
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+
+{
+    int i;
+    char a[255];
+    printf("Enter a sentence:");
+    scanf_s("%s",&a,sizeof(a));  //遇到空格就会停止 
+    i = strlen(a);
+    for (i; i >= 0; i--)
+    {
+        printf("%c", a[i]); //无法打印空格
+    }
+    return 0;
+}
+
+//另外的更好的答案
+#include <stdio.h>
+#define LEN 255
+
+int main(void)
+{
+    int i = 0;
+    char input[LEN];
+
+    printf("Please enter a string:\n");
+    do
+    {
+        scanf_s("%c", &input[i]);
+    } while (input[i] != '\n' && ++i && i < LEN);
+
+    printf("Reversing print the string is:\n");
+    for (i--; i >= 0; i--)
+    {
+        //↑避免打印换行符;
+        printf("%c", input[i]);
+    }
+    printf("\nDone.\n");
+
+    return 0;
+}
+*/
+
+/*第十六题
+#include <stdio.h>
+#include <math.h>
+
+int main(void)
+
+{
+    double i,j;
+    int n=1;
+    do 
+    {
+        i = 100 +10*n;
+        j = 100*pow(1.05,n);
+        n++;
+    } while (i > j);
+    printf("%d年,%.2f,%.2f", n-1,i,j);
+    return 0;
+}
+*/
+
+
+/*第十七题
+#include <stdio.h>
+#include <math.h>
+#define MONENY 100
+#define RATE 1.08
+#define TAKE 10
+
+int main(void)
+
+{
+    double rest;
+    int n;
+    n = 1;
+    rest = MONENY * RATE - TAKE;
+    printf("%d年，%f\n", 1, rest);
+    for (n; rest > 9; n++)
+    {
+        rest = rest * RATE - TAKE;
+        printf("%d年,%f\n", n+1,rest);
+    }
+    
+    return 0;
+}
+*/
+
+//第十八题
+#include <stdio.h>
+
+int main(void)
+
+{
+    int left,n;
+    left = 5;
+    for (n = 1; left < 150; n++)
+    {
+        left = (left - n) * 2;
+        printf("第%d周，总共%d个朋友\n",n, left);
+    }
     return 0;
 }
